@@ -3,14 +3,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { SwipeComponent } from './swipe/swipe.component';
-import { ChatComponent } from './chat/chat.component';
-import { SettingsComponent } from './settings/settings.component';
-import { LoginComponent } from './login/login.component';
+import { CardComponent } from './components/card/card.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { UserService } from './services/user.service';
 
 
 const appRoutes = [
-  { path: '', component: SwipeComponent },
+  { path: '', component: MainComponent },
+  { path: 'card', component: CardComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'chat', component: ChatComponent },
   { path: 'login', component: LoginComponent }
@@ -20,16 +24,22 @@ const appRoutes = [
 @NgModule({
   declarations: [
     AppComponent,
-    SwipeComponent,
+    CardComponent,
     ChatComponent,
     SettingsComponent,
-    LoginComponent
+    LoginComponent,
+    MainComponent,
+    NavbarComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    UserService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
