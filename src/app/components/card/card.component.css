@@ -1,0 +1,23 @@
+.card-header {
+  height: 70%;
+}
+
+.card-carousel {
+  height:100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.card-body {
+  height: 20%;
+}
+
+.card-footer {
+  height: 10%;
+}
+
+.newline {
+  white-space: pre-line;
+}

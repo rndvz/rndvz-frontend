@@ -1,15 +1,17 @@
-<div class="pl-0 pr-0 pl-sm-5 pr-sm-5 pl-md-0 pr-md-0 pl-xl-5 pr-xl-5">
-  <div class="card text-white box-shadow bg-dark" style="max-height: 90vh;">
-    <div class="card-header" style="max-height: 65vh;">
-      <div id="carouselPhotosIndicators" class="carousel slide" style="max-height: 65vh;" data-ride="carousel" data-interval="false">
-        <div class="carousel-inner" style="max-height: 65vh;">
-          <div *ngFor="let photo of photos; let i = index" [ngClass]="{'active' : i == 0}" class="carousel-item" style="max-height: 65vh;">
-            <img class="d-block w-100" style="max-height: 65vh;" [src]="photo" alt="{{'Photo no. ' + (i + 1)}}">
-          </div>
-        </div>
+<div class="pl-0 pr-0 pl-sm-5 pr-sm-5 pl-md-0 pr-md-0 pl-xl-5 pr-xl-5 h-100">
+  <div class="card text-white box-shadow bg-dark h-100">
+    <div class="card-header">
+      <div id="carouselPhotosIndicators" class="card-carousel carousel slide" data-ride="carousel" data-interval="false">
         <ol class="carousel-indicators">
           <li *ngFor="let photo of photos; let i = index" [ngClass]="{'active' : i == 0}" data-target="#carouselPhotosIndicators" attr.data-slide-to="{{i}}"></li>
         </ol>
+
+        <div class="carousel-inner">
+          <div *ngFor="let photo of photos; let i = index" [ngClass]="{'active' : i == 0}" class="carousel-item">
+            <img class="d-block w-100" [src]="photo" alt="{{'Photo no. ' + (i + 1)}}">
+          </div>
+        </div>
+
         <a class="carousel-control-prev" href="#carouselPhotosIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -21,17 +23,17 @@
       </div>
     </div>
 
-    <div class="card-body" style="max-height: 30vh;">
+    <div class="card-body">
       <div class="card-title">
         <h1>{{nickname}}</h1>
-        <p style="white-space: pre-line">{{bio}}</p>
+        <p class="newline">{{bio}}</p>
       </div>
+    </div>
 
-      <div class="card-footer text-center">
-        <div class="btn-group btn-group-lg w-100">
-          <button type="button" class="btn btn-danger w-50">NO</button>
-          <button type="button" class="btn btn-success w-50">YES</button>
-        </div>
+    <div class="card-footer text-center">
+      <div class="btn-group btn-group-lg w-100">
+        <button type="button" class="btn btn-danger w-50">NO</button>
+        <button type="button" class="btn btn-success w-50">YES</button>
       </div>
     </div>
   </div>
