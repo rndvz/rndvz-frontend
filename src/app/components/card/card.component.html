@@ -7,7 +7,7 @@
         </ol>
 
         <div class="carousel-inner">
-          <div *ngFor="let photo of photos; let i = index" [ngClass]="{'active' : i == 0}" class="carousel-item">
+          <div *ngFor="let photo of photos; let i = index" [ngClass]="{'active' : i == 0}" class="carousel-item no-select-img">
             <img class="d-block w-100" [src]="photo" alt="{{'Photo no. ' + (i + 1)}}">
           </div>
         </div>
@@ -24,14 +24,14 @@
     </div>
 
     <div class="card-body">
-      <div class="card-title">
+      <div class="card-title no-select-text">
         <h1>{{nickname}}</h1>
-        <p class="newline">{{bio}}</p>
+        <p class="newline font-weight-light">{{bio}}</p>
       </div>
     </div>
 
     <div class="card-footer text-center">
-      <div class="btn-group btn-group-lg w-100">
+      <div class="btn-group btn-group-lg w-100 no-select-text">
         <button type="button" class="btn btn-danger w-50">NO</button>
         <button type="button" class="btn btn-success w-50">YES</button>
       </div>

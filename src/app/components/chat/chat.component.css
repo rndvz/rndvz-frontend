@@ -1,0 +1,16 @@
+.table-click tbody tr:active {
+  background-color: rgba(0,0,0,.2);
+}
+
+.rectangle-4rem {
+  height: 4rem;
+}
+
+.square-4rem {
+  height: 4rem;
+  width: 4rem
+}
+
+.square-fancy {
+  border-radius: 0 20% 0;
+}

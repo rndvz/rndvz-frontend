@@ -1,6 +1,26 @@
-<div class="collapse" id="navbarToggleChat">
-  <div class="bg-dark p-4">
-    <h4 class="text-white">Chat</h4>
-    <span class="text-muted">Some chat</span>
+<div class="collapse w-100" id="navbarToggleChat">
+  <div class="bg-dark pl-0 pb-1 pt-1 pr-0">
+    <table class="table table-hover table-click table-borderless text-white mb-2">
+      <thead>
+        <tr>
+          <th scope="col" colspan="2" class="pl-3 pb-3 pt-2 pr-3 w-100">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Match's name">
+            </div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+       <tr *ngFor="let match of matches">
+         <th scope="row" class="pt-1 pb-1 pl-3 pr-0 text-center align-middle square-4rem no-select-img">
+           <img class="float-left square-4rem square-fancy" [src]="match.miniPhoto"/>
+         </th>
+         <td class="pt-1 pb-1 pl-1 pr-3 w-100 text-center align-middle rectangle-4rem no-select-text font-weight-light">
+           {{match.nick}}
+         </td>
+       </tr>
+      </tbody>
+    </table>
   </div>
 </div>
