@@ -13,12 +13,12 @@ export class CardComponent implements OnInit {
   private startXPosition: number;
   private startYPosition: number;
   private startTransform: string;
-  protected currentXPosition = 0;
-  protected currentYPosition = 0;
-  protected currentTransform = 'rotate(0deg)';
-  protected nickname = 'Sidey Myoo';
-  protected bio = 'haha\nhaha';
-  protected photos = [];
+  public currentXPosition = 0;
+  public currentYPosition = 0;
+  public currentTransform = 'rotate(0deg)';
+  public nickname = 'Sidey Myoo';
+  public bio = 'haha\nhaha';
+  public photos = [];
 
   constructor(private domSanitizer: DomSanitizer, private animationBuilder: AnimationBuilder) { }
 
