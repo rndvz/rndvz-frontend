@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Match } from '../../backend/match';
+import { Match } from '../../util/match';
 
 @Component({
   selector: 'app-chat',

@@ -33,7 +33,7 @@ export class CardComponent implements OnInit {
     }
   }
 
-  onPanStart(event: HammerInput): void {
+  onPanStart(event: PanHammerInput): void {
     if (this.currentPlayer != null) {
       this.resetCardElement();
     }
@@ -67,14 +67,14 @@ export class CardComponent implements OnInit {
     ]);
   }
 
-  onPanMove(event: HammerInput): void {
+  onPanMove(event: PanHammerInput): void {
     const offsetX = event.deltaX + this.startXPosition;
     this.currentXPosition = offsetX;
     this.currentYPosition = event.deltaY + this.startYPosition;
     this.currentTransform = 'rotate(' + (((offsetX - this.startXPosition) * 50) / this.cardElement.nativeElement.clientWidth) + 'deg)';
   }
 
-  onPanEnd(event: HammerInput): void {
+  onPanEnd(event: PanHammerInput): void {
     console.log(this.cardElement);
     console.log(event);
     if (this.isSwipeRight(event)) {
@@ -94,12 +94,12 @@ export class CardComponent implements OnInit {
     }
   }
 
-  private isSwipeRight(event: HammerInput): boolean {
+  private isSwipeRight(event: PanHammerInput): boolean {
     return (event.additionalEvent === 'panright' && event.velocityX > 3.0) ||
       (event.deltaX > this.cardElement.nativeElement.clientWidth / 2.5);
   }
 
-  private isSwipeLeft(event: HammerInput): boolean {
+  private isSwipeLeft(event: PanHammerInput): boolean {
     return (event.additionalEvent === 'panleft' && event.velocityX < -3.0) ||
       (event.deltaX * (-1) > this.cardElement.nativeElement.clientWidth / 2.5);
   }
