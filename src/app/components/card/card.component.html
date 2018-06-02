@@ -1,5 +1,7 @@
-<div class="pl-0 pr-0 pl-sm-5 pr-sm-5 pl-md-0 pr-md-0 pl-xl-5 pr-xl-5 h-100">
-  <div class="card text-white box-shadow bg-dark h-100">
+<div #cardComponent [style.left.px]="currentXPosition" [style.top.px]="currentYPosition" [style.transform]="currentTransform"
+     class="pl-0 pr-0 pl-sm-5 pr-sm-5 pl-md-0 pr-md-0 pl-xl-5 pr-xl-5 h-100 position-relative"
+     id="cardComponent" (panstart)="onPanStart($event)" (panend)="onPanEnd($event)" (panmove)="onPanMove($event)">
+  <div class="card text-white box-shadow bg-dark h-100 rounded-0">
     <div class="card-header">
       <div id="carouselPhotosIndicators" class="card-carousel carousel slide" data-ride="carousel" data-interval="false">
         <ol class="carousel-indicators">
