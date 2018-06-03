@@ -60,7 +60,7 @@ jobs:
       - run: aws configure set default.s3.signature_version s3v4
 
       # Deploy frontend to S3 (and delete previous version)
-      - run: aws s3 sync dist/* s3://rndvz --delete
+      - run: aws --region eu-east-2 s3 sync dist/* s3://rndvz --delete
 
 workflows:
   version: 2
