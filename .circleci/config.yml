@@ -4,13 +4,14 @@
 #
 version: 2
 
+defaults: &defaults
+  working_directory: /tmp
+  docker:
+    - image: circleci/node:8-browsers
+
 jobs:
   build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8-browsers
-
-    working_directory: ~/rndvz-frontend
+    <<: *defaults
 
     steps:
       # Checkout code from repository to working_directory
@@ -36,28 +37,26 @@ jobs:
       - run: npm run ng build --prod
 
       # Cache project for deployment
-      - save_cache:
+      - persist_to_workspace:
+          root: ./
           paths:
-              - dist
-          key: v1-dist-{{ .Environment.CIRCLE_SHA1 }}
+            - dist
 
   deploy:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:8-browsers
-
-    working_directory: ~/rndvz-frontend
+    <<: *defaults
 
     steps:
       # Restore cached project
-      - restore_cache:
-          key: v1-dist-{{ .Environment.CIRCLE_SHA1 }}
+      - attach_workspace:
+          at: /tmp/dist
       
       # Install AWS CLI
       - run: sudo apt-get -y -qq install awscli
 
       # Set signature version for S3 Auth
       - run: aws configure set default.s3.signature_version s3v4
+
+      - run: ls -al
 
       # Deploy frontend to S3 (and delete previous version)
       - run: aws --region eu-east-2 s3 sync dist s3://rndvz/ --delete
