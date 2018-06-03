@@ -9,11 +9,6 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:8-browsers
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
 
     working_directory: ~/rndvz-frontend
 
@@ -45,3 +40,24 @@ jobs:
           paths:
               - dist
           key: v1-dist-{{ .Environment.CIRCLE_SHA1 }}
+
+  deploy:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8-browsers
+
+    working_directory: ~/rndvz-frontend
+
+    steps:
+      # Restore cached project
+      - restore_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_SHA1 }}
+      
+      # Install AWS CLI
+      - run: sudo apt-get -y -qq install awscli
+
+      # Set signature version for S3 Auth
+      - run: aws configure set default.s3.signature_version s3v4
+
+      # Deploy frontend to S3 (and delete previous version)
+      - run: aws s3 sync dist/* s3://rndvz --delete
