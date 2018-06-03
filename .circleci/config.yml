@@ -61,7 +61,7 @@ jobs:
       - run: printenv | grep AWS
 
       # Deploy frontend to S3 (and delete previous version)
-      - run: aws --region eu-east-2 s3 sync /tmp/rndvz-frontend/dist/dist/rndvz-frontend/ s3://rndvz/ --delete
+      - run: aws --region eu-east-2 s3 sync /tmp/rndvz-frontend/dist/dist/rndvz-frontend/ s3://rndvz/ --delete --debug
 
 workflows:
   version: 2
