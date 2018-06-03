@@ -5,7 +5,7 @@
 version: 2
 
 defaults: &defaults
-  working_directory: /tmp
+  working_directory: /tmp/rndvz-frontend
   docker:
     - image: circleci/node:8-browsers
 
@@ -48,7 +48,7 @@ jobs:
     steps:
       # Restore cached project
       - attach_workspace:
-          at: /tmp/dist
+          at: /tmp/rndvz-frontend/dist
       
       # Install AWS CLI
       - run: sudo apt-get -y -qq install awscli
