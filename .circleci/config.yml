@@ -61,3 +61,13 @@ jobs:
 
       # Deploy frontend to S3 (and delete previous version)
       - run: aws s3 sync dist/* s3://rndvz --delete
+
+workflows:
+  version: 2
+
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+        requires:
+          - build
