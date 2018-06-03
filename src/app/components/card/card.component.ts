@@ -1,6 +1,7 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AnimationBuilder, AnimationFactory, AnimationPlayer, keyframes, animate, style } from '@angular/animations';
+import { PanHammerInput } from '../../util/pan-hammer-input';
 
 @Component({
   selector: 'app-card',
