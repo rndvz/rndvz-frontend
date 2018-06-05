@@ -12,6 +12,7 @@ import { MainComponent } from './components/main/main.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserService } from './services/user.service';
 import { OcticonDirective } from './directives/octicon.directive';
+import { CardsComponent } from './components/cards/cards.component';
 
 
 const appRoutes = [
@@ -32,7 +33,8 @@ const appRoutes = [
     LoginComponent,
     MainComponent,
     NavbarComponent,
-    OcticonDirective
+    OcticonDirective,
+    CardsComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),

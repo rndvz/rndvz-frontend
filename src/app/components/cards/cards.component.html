@@ -1,0 +1,14 @@
+<div *ngIf="cards[0] != null" class="h-100">
+  <div #mainCard [style.left.px]="currentXPosition" [style.top.px]="currentYPosition" [style.transform]="currentTransform"
+       class="pl-0 pr-0 pl-sm-5 pr-sm-5 pl-md-0 pr-md-0 pl-xl-5 pr-xl-5 h-100 position-relative" [ngStyle]="{'z-index': maxCards}"
+       (panstart)="onPanStart($event)" (panend)="onPanEnd($event)" (panmove)="onPanMove($event)">
+    <app-card [person]="cards[0]"></app-card>
+  </div>
+</div>
+
+<div *ngFor="let card of cards.slice(1); let i = index" class="h-100 w-100">
+  <div #secondaryCard [style.left.px]="startXPosition" [style.top.px]="startYPosition" [style.transform]="startTransform"
+       class="pl-0 pr-0 pl-sm-5 pr-sm-5 pl-md-0 pr-md-0 pl-xl-5 pr-xl-5 h-100 w-100 position-absolute" [ngStyle]="{'z-index': maxCards - 1 - i}">
+    <app-card [person]="card"></app-card>
+  </div>
+</div>
