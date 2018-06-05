@@ -117,14 +117,14 @@ export class CardsComponent implements OnInit {
 
   private createRightAnimation(): AnimationFactory {
     return this.animationBuilder.build([
-      animate(400, keyframes([
+      animate(250, keyframes([
         style({
           left: '*',
           top: '*',
           transform: '*'
         }),
         style({
-          left: window.innerWidth + 'px',
+          left: (window.innerWidth * 2) + 'px',
           top: 0 + 'px',
           transform: 'rotate(0deg)'
         })
@@ -141,14 +141,14 @@ export class CardsComponent implements OnInit {
 
   private createLeftAnimation(): AnimationFactory {
     return this.animationBuilder.build([
-      animate(400, keyframes([
+      animate(250, keyframes([
         style({
           left: '*',
           top: '*',
           transform: '*'
         }),
         style({
-          left: (-window.innerWidth) + 'px',
+          left: (-window.innerWidth * 2) + 'px',
           top: 0 + 'px',
           transform: 'rotate(0deg)'
         })
