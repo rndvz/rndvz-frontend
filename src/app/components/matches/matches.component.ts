@@ -17,10 +17,10 @@ const FUSE_OPTIONS = {
 
 @Component({
   selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css', '../../common.css']
+  templateUrl: './matches.component.html',
+  styleUrls: ['./matches.component.css', '../../common.css']
 })
-export class ChatComponent implements OnInit {
+export class MatchesComponent implements OnInit {
   private matches: Match[];
   private fuse: Fuse;
   public searchMatches: Match[];
