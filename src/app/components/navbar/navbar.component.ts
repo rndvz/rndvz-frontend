@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { library } from '@fortawesome/fontawesome';
+import { faHeartbeat, faCogs, faUsers } from '@fortawesome/fontawesome-free-solid';
+import { UserService } from '../../services/user.service';
+
+library.add(faHeartbeat, faCogs, faUsers);
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +13,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
+  }
+
+  public onHeartClick(): void {
+    this.router.navigate(['/refresh'])
+      .then(() => this.router.navigate(['/']));
   }
 
 }

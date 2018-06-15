@@ -6,14 +6,14 @@
         <tr>
           <th scope="col" colspan="2" class="pl-3 pb-3 pt-2 pr-3 w-100">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Match's name">
+              <input type="text" class="form-control" placeholder="Match's name" [ngModel]="null" (ngModelChange)="search($event)">
             </div>
           </th>
         </tr>
       </thead>
 
       <tbody>
-       <tr *ngFor="let match of matches">
+       <tr *ngFor="let match of searchMatches">
          <th scope="row" class="pt-1 pb-1 pl-3 pr-0 text-center align-middle square-4rem no-select-img">
            <img class="float-left square-4rem square-fancy" [src]="match.miniPhoto"/>
          </th>

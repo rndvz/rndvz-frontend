@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AnimationBuilder, AnimationFactory, AnimationPlayer, keyframes, style, animate } from '@angular/animations';
+import { AnimationBuilder, AnimationPlayer, style, animate } from '@angular/animations';
 import { Person } from '../../util/person';
 import { Gender } from '../../util/gender.enum';
 import { PanHammerInput } from '../../util/pan-hammer-input';
@@ -12,17 +12,16 @@ import { PanHammerInput } from '../../util/pan-hammer-input';
 })
 export class CardsComponent implements OnInit {
   @ViewChild('mainCard') public cardElement: ElementRef;
-  // @ViewChildren('secondaryCard') public cardElements: QueryList<ElementRef>;
   public currentPlayer: AnimationPlayer;
   public cards: Person[];
   public maxCards = 10;
 
   public startXPosition = 0;
   public startYPosition = 0;
-  public startTransform = 'rotate(0deg)';
+  public noRotateTransform = 'rotate(0deg)';
   public currentXPosition = this.startXPosition;
   public currentYPosition = this.startYPosition;
-  public currentTransform = this.startTransform;
+  public currentTransform = this.noRotateTransform;
 
   constructor(private domSanitizer: DomSanitizer, private animationBuilder: AnimationBuilder) { }
 
@@ -30,59 +29,27 @@ export class CardsComponent implements OnInit {
     const photo1 = 'https://thumb9.shutterstock.com/display_pic_with_logo/111616/111616,1312478131,2/stock-photo-beauty-woman' +
       '-portrait-of-teen-girl-beautiful-cheerful-enjoying-with-long-brown-hair-and-clean-skin-82225732.jpg';
     const photo2 = 'https://thumb9.shutterstock.com/display_pic_with_logo/399136/646898302/stock-photo-beautiful-woman-646898302.jpg';
-    const card1 = new Person('Amelia', 'hehe ;)', Gender.FEMALE, [photo1]);
+    const card1 = new Person('Amelia', 'hehe ;)', Gender.FEMALE, [photo1, photo2]);
     const card2 = new Person('Jessica', '(:', Gender.FEMALE, [photo2]);
     this.cards = [card1, card2, card1];
   }
 
-  onPanStart(event: PanHammerInput): void {
-    if (this.currentPlayer != null) {
-      this.resetCardElement();
-    }
-
-    this.startXPosition = this.cardElement.nativeElement.offsetLeft;
-    this.startYPosition = this.cardElement.nativeElement.offsetTop;
-    this.startTransform = 'rotate(0deg)';
-  }
-
-  private resetCardElement(): void {
-    this.currentPlayer.destroy();
-    this.currentXPosition = this.startXPosition;
-    this.currentYPosition = this.startYPosition;
-    this.currentTransform = this.startTransform;
-  }
-
-  onPanMove(event: PanHammerInput): void {
+  public onPanMove(event: PanHammerInput): void {
     const offsetX = event.deltaX + this.startXPosition;
+    const offsetY = event.deltaY + this.startYPosition;
+
     this.currentXPosition = offsetX;
-    this.currentYPosition = event.deltaY + this.startYPosition;
+    this.currentYPosition = offsetY;
     this.currentTransform = 'rotate(' + (((offsetX - this.startXPosition) * 50) / this.cardElement.nativeElement.clientWidth) + 'deg)';
   }
 
-  onPanEnd(event: PanHammerInput): void {
+  public onPanEnd(event: PanHammerInput): void {
     if (this.isSwipeRight(event)) {
-      this.currentPlayer = this.createRightAnimation().create(this.cardElement.nativeElement);
-      this.currentPlayer.onDone( () => {
-        this.cards.shift();
-        this.currentXPosition = this.startXPosition;
-        this.currentYPosition = this.startYPosition;
-        this.currentTransform = this.startTransform;
-      });
+      this.currentPlayer = this.createSwipeRightAnimation();
     } else if (this.isSwipeLeft(event)) {
-      this.currentPlayer = this.createLeftAnimation().create(this.cardElement.nativeElement);
-      this.currentPlayer.onDone(() => {
-        this.cards.shift();
-        this.currentXPosition = this.startXPosition;
-        this.currentYPosition = this.startYPosition;
-        this.currentTransform = this.startTransform;
-      });
+      this.currentPlayer = this.createSwipeLeftAnimation();
     } else {
-      this.currentPlayer = this.createReturnAnimation().create(this.cardElement.nativeElement);
-      this.currentPlayer.onStart(() => {
-        this.currentXPosition = this.startXPosition;
-        this.currentYPosition = this.startYPosition;
-        this.currentTransform = this.startTransform;
-      });
+      this.currentPlayer = this.createReturnAnimation();
     }
 
     this.currentPlayer.play();
@@ -98,68 +65,50 @@ export class CardsComponent implements OnInit {
       (event.deltaX * (-1) > this.cardElement.nativeElement.clientWidth / 2.5);
   }
 
-  private createReturnAnimation(): AnimationFactory {
-    return this.animationBuilder.build([
-      animate(150, keyframes([
-        style({
-          left: '*',
-          top: '*',
-          transform: '*'
-        }),
-        style({
-          left: this.startXPosition + 'px',
-          top: this.startYPosition + 'px',
-          transform: this.startTransform
-        })
-      ]))
-    ]);
+  private createReturnAnimation(): AnimationPlayer {
+    return this.createCardAnimation(150, this.startXPosition, false);
   }
 
-  private createRightAnimation(): AnimationFactory {
-    return this.animationBuilder.build([
-      animate(250, keyframes([
-        style({
-          left: '*',
-          top: '*',
-          transform: '*'
-        }),
-        style({
-          left: (window.innerWidth * 2) + 'px',
-          top: 0 + 'px',
-          transform: 'rotate(0deg)'
-        })
-      ])),
-      animate(1, keyframes([
-        style({
-          left: this.startXPosition + 'px',
-          top: this.startYPosition + 'px',
-          transform: this.startTransform
-        })
-      ]))
-    ]);
+  private createSwipeRightAnimation(): AnimationPlayer {
+    return this.createSwipeAnimation(window.innerWidth * 2);
   }
 
-  private createLeftAnimation(): AnimationFactory {
-    return this.animationBuilder.build([
-      animate(250, keyframes([
-        style({
-          left: '*',
-          top: '*',
-          transform: '*'
-        }),
-        style({
-          left: (-window.innerWidth * 2) + 'px',
-          top: 0 + 'px',
-          transform: 'rotate(0deg)'
-        })
-      ])),
-      animate(1, keyframes([
-        style({
-          left: this.startXPosition + 'px',
-          top: this.startYPosition + 'px',
-          transform: this.startTransform
-        })
-      ]))
+  private createSwipeLeftAnimation(): AnimationPlayer {
+    return this.createSwipeAnimation((-window.innerWidth) * 2);
+  }
+
+  private createSwipeAnimation(left: number): AnimationPlayer {
+    return this.createCardAnimation(250, left, true);
+  }
+
+  private createCardAnimation(timings: number, left: number, withCardPop: boolean): AnimationPlayer {
+    const animationFactory = this.animationBuilder.build([
+      animate(timings, style({
+        left: left + 'px',
+        top: '0px',
+        transform: this.noRotateTransform
+      }))
     ]);
+
+    const player = animationFactory.create(this.cardElement.nativeElement);
+    player.onDone(() => {
+      this.resetPlayerAndCard(withCardPop);
+    });
+
+    return player;
+  }
+
+  private async resetPlayerAndCard(withCardPop: boolean): Promise<void> {
+    if (this.currentPlayer) {
+      this.currentPlayer.destroy();
+    }
+
+    if (withCardPop) {
+      this.cards.shift();
+    }
+
+    this.currentXPosition = this.startXPosition;
+    this.currentYPosition = this.startYPosition;
+    this.currentTransform = this.noRotateTransform;
   }
 }

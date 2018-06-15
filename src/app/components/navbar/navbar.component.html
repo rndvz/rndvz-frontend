@@ -1,13 +1,14 @@
-<nav class="navbar navbar-dark bg-dark navbar-height">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleSettings"
-          aria-controls="navbarToggleSettings" aria-expanded="false" aria-label="Toggle navigation">
-    <span octicon="gear" [width]="28"></span>
+<nav class="navbar navbar-dark bg-dark navbar-height" style="padding-top: 0.3rem; padding-bottom: 0.3rem;">
+  <button class="navbar-toggler h-100" type="button" [routerLink]="['/settings']">
+    <i class="fas fa-cogs fa-lg"></i>
   </button>
 
-  <a class="navbar-brand mr-0 no-select-text" href="">rndvz</a>
+  <button class="navbar-toggler h-100" type="button" (click)="onHeartClick()">
+    <i class="fas fa-heartbeat fa-lg"></i>
+  </button>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleChat"
+  <button class="navbar-toggler h-100" type="button" data-toggle="collapse" data-target="#navbarToggleChat"
           aria-controls="navbarToggleChat" aria-expanded="false" aria-label="Toggle navigation">
-    <span octicon="mail" [width]="28"></span>
+    <i class="fas fa-users fa-lg"></i>
   </button>
 </nav>

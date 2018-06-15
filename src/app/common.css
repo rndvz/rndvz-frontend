@@ -9,3 +9,12 @@
 .no-select-img {
   pointer-events: none !important;
 }
+
+.navbar-height {
+  height: 7%;
+  min-height: 2.8em;
+}
+
+.main-container-height {
+  height: 93%;
+}

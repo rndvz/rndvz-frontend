@@ -1,6 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -11,16 +12,18 @@ import { CardsComponent } from './components/cards/cards.component';
 import { CardComponent } from './components/card/card.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LoginComponent } from './components/login/login.component';
-import { OcticonDirective } from './directives/octicon.directive';
 import { UserService } from './services/user.service';
+import { AuthGuard } from './guards/auth.guard';
+import { RefreshComponent } from './components/refresh/refresh.component';
 
 
 const appRoutes = [
-  { path: '', component: MainComponent },
-  { path: 'card', component: CardComponent },
-  { path: 'settings', component: SettingsComponent },
-  { path: 'chat', component: ChatComponent },
-  { path: 'login', component: LoginComponent }
+  { path: '', component: MainComponent, canActivate: [AuthGuard] },
+  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'refresh', component: RefreshComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 
@@ -34,11 +37,12 @@ const appRoutes = [
     CardComponent,
     SettingsComponent,
     LoginComponent,
-    OcticonDirective
+    RefreshComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule
   ],
   providers: [
