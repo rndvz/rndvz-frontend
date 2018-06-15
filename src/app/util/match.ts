@@ -1,16 +1,18 @@
 export class Match {
-  private readonly _nick: string;
-  private readonly _miniPhoto: string;
+  constructor(private readonly _id: number,
+              private readonly _nick: string,
+              private readonly _miniPhoto: string) {
+  }
 
-  constructor(_nick, _miniPhoto) {
-    this._nick = _nick;
-    this._miniPhoto = _miniPhoto;
+  get id(): number {
+    return this._id;
+  }
+
+  get nick(): string {
+    return this._nick;
   }
 
   get miniPhoto(): string {
     return this._miniPhoto;
-  }
-  get nick(): string {
-    return this._nick;
   }
 }

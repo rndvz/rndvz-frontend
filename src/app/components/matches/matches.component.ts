@@ -33,9 +33,9 @@ export class MatchesComponent implements OnInit {
     const photo2 = 'https://thumb9.shutterstock.com/display_pic_with_logo/399136/646898302/stock-photo-beautiful-woman-646898302.jpg';
 
     this.matches = [
-      new Match('Roksana', photo1),
-      new Match('Amelia', photo2),
-      new Match('Sidey Myoo', photo2)
+      new Match(1, 'Roksana', photo1),
+      new Match(2, 'Amelia', photo2),
+      new Match(3, 'Sidey Myoo', photo2)
     ].sort((a: Match, b: Match) => a.nick.localeCompare(b.nick));
 
     this.searchMatches = this.matches;

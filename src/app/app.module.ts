@@ -7,23 +7,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainComponent } from './components/main/main.component';
-import { MatchesComponent } from './components/matches/matches.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { CardComponent } from './components/card/card.component';
+import { ChatComponent } from './components/chat/chat.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { MatchesComponent } from './components/matches/matches.component';
+import { RefreshComponent } from './components/refresh/refresh.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './guards/auth.guard';
-import { RefreshComponent } from './components/refresh/refresh.component';
-import { ChatComponent } from './components/chat/chat.component';
-
 
 const appRoutes = [
-  { path: '', component: MainComponent, canActivate: [AuthGuard] },
-  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  { path: 'matches', component: MatchesComponent, canActivate: [AuthGuard] },
+  { path: '', component: MainComponent, canActivate: [AuthGuard], children: [
+      { path: '', component: CardsComponent },
+      { path: 'chat/:user-id', component: ChatComponent },
+      { path: 'settings', component: SettingsComponent },
+      { path: 'refresh', component: RefreshComponent }
+  ]},
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'refresh', component: RefreshComponent },
   { path: '**', redirectTo: '' }
 ];
 

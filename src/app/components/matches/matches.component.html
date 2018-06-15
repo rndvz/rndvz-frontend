@@ -1,7 +1,6 @@
 <div class="bg-dark collapse w-100 " id="navbarToggleChat" >
-  <div class="border-left border-bottom border-top border-dark pl-0 pb-1 pt-1 pr-0"
-       style="background-color: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.1) !important;">
-    <table class="table table-hover table-click table-borderless text-white mb-2">
+  <div class="border-left border-bottom border-top border-dark pl-0 pb-1 pt-1 pr-0 table-background">
+    <table class="table table-hover table-hover-pointer table-click table-borderless text-white mb-2">
       <thead>
         <tr>
           <th scope="col" colspan="2" class="pl-3 pb-3 pt-2 pr-3 w-100">
@@ -13,14 +12,14 @@
       </thead>
 
       <tbody>
-       <tr *ngFor="let match of searchMatches">
-         <th scope="row" class="pt-1 pb-1 pl-3 pr-0 text-center align-middle square-4rem no-select-img">
-           <img class="float-left square-4rem square-fancy" [src]="match.miniPhoto"/>
-         </th>
-         <td class="pt-1 pb-1 pl-1 pr-3 w-100 text-center align-middle rectangle-4rem no-select-text font-weight-light">
-           {{match.nick}}
-         </td>
-       </tr>
+        <tr *ngFor="let match of searchMatches" [routerLink]="['/chat', match.id]">
+          <th scope="row" class="pt-1 pb-1 pl-3 pr-0 text-center align-middle square-4rem">
+            <img class="float-left square-4rem square-fancy no-drag no-select-text" [src]="match.miniPhoto"/>
+          </th>
+          <td class="pt-1 pb-1 pl-1 pr-3 w-100 text-center align-middle rectangle-4rem no-select-text font-weight-light">
+            {{match.nick}}
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

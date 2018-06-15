@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { library } from '@fortawesome/fontawesome';
 import { faSpinner } from '@fortawesome/fontawesome-free-solid';
 
@@ -11,9 +12,10 @@ library.add(faSpinner);
 })
 export class RefreshComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.router.navigate(['']);
   }
 
 }

@@ -18,9 +18,4 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  public onHeartClick(): void {
-    this.router.navigate(['/refresh'])
-      .then(() => this.router.navigate(['/']));
-  }
-
 }
