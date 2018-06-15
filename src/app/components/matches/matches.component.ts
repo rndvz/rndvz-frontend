@@ -16,7 +16,7 @@ const FUSE_OPTIONS = {
 };
 
 @Component({
-  selector: 'app-chat',
+  selector: 'app-matches',
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.css', '../../common.css']
 })

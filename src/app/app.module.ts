@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './guards/auth.guard';
 import { RefreshComponent } from './components/refresh/refresh.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 const appRoutes = [
@@ -37,7 +38,8 @@ const appRoutes = [
     CardComponent,
     SettingsComponent,
     LoginComponent,
-    RefreshComponent
+    RefreshComponent,
+    ChatComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),

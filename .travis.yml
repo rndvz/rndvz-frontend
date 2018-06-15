@@ -12,9 +12,9 @@ addons:
   chrome: stable
 
 script:
-  - npm run lint
+  - ng lint
   # - npm run test:headless
-  - npm run build --prod
+  - ng build --prod
   # - xvfb-run npm run e2e
 
 before_deploy:
