@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { library } from '@fortawesome/fontawesome';
+import { faUserLock, faUserShield } from '@fortawesome/fontawesome-free-solid';
+
+library.add(faUserLock, faUserShield);
 
 @Component({
   selector: 'app-login',
