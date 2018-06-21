@@ -18,4 +18,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  newLogIn(e) {
+    e.preventDefault();
+    console.log(this.userService.username, 'LOGGOUT')
+    this.userService.LogOut();
+    this.router.navigate(['/login']);
+  }
+
 }
