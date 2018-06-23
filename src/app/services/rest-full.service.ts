@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {tap} from 'rxjs/operators';
-import {log} from 'util';
 import {User} from '../util/user';
 
 @Injectable({
@@ -9,9 +7,7 @@ import {User} from '../util/user';
 })
 export class RestFullService {
 
-  constructor(private http: HttpClient) {
-  }
-
+  constructor(private http: HttpClient) {}
 
   getAllUsers() {
     return this.http.get(`http://localhost:8080/users/`)
