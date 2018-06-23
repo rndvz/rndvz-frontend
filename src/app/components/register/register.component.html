@@ -2,7 +2,7 @@
   <div class="row h-100">
     <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4 h-100 w-100 d-flex align-items-center mx-auto justify-content-center">
       <div class="card shadow-lg">
-        <form class="text-center" (ngSubmit)="registerUser($event)">
+        <form class="text-center" (ngSubmit)="submit($event)">
           <div class="card-header">
             <i class="fas fa-user-alt fa-10x mt-5 mb-5" style="color: rgba(0, 0, 0, 0.7);"></i>
             <h1 class="h3 mb-4 font-weight-light">Register your account</h1>
@@ -11,28 +11,28 @@
               <label for="loginNameInput" class="sr-only">loginName</label>
               <input type="text" id="loginNameInput" class="form-control rounded-0" placeholder="Your Login" required autofocus minLength="3" maxLength="20">
               <br>
-              Date of birth:  <input type="date" id="birthdateInput" name="birthdate" value="1990-01-01" min="1900-01-01" max="2000-12-31" />
+              Date of birth: &nbsp;&nbsp;<label for="birthdateInput"></label><input type="date" id="birthdateInput" name="birthdate" value="1990-01-01" min="1900-01-01" max="2000-12-31" />
               <br><br>
               <label>
               Your Sex:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </label>
               <label>
-                <input type="radio" name="gender" value="male">&nbsp; <i class="fas fa-male" style="color: rgba(0, 0, 0, 0.7);"></i> Male
+                <input type="radio" id="sexGenderMale" name="gender" value="male" >&nbsp; <i class="fas fa-male" style="color: rgba(0, 0, 0, 0.7);"></i> Male
               </label>
               &nbsp;&nbsp;
               <label>
-                <input type="radio" name="gender" value="female">&nbsp; <i class="fas fa-female" style="color: rgba(0, 0, 0, 0.7);"></i> Female
+                <input type="radio" id="sexGenderFemale" name="gender" value="female">&nbsp; <i class="fas fa-female" style="color: rgba(0, 0, 0, 0.7);"></i> Female
               </label>
               <br>
               <label>
                 Preference:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </label>
               <label>
-                <input type="radio" name="preference" value="male">&nbsp; <i class="fas fa-male" style="color: rgba(0, 0, 0, 0.7);"></i> Male
+                <input type="radio" id="sexPreferenceGenderMale" name="preference" value="male">&nbsp; <i class="fas fa-male" style="color: rgba(0, 0, 0, 0.7);"></i> Male
               </label>
               &nbsp;&nbsp;
               <label>
-                <input type="radio" name="preference" value="female">&nbsp; <i class="fas fa-female" style="color: rgba(0, 0, 0, 0.7);"></i> Female
+                <input type="radio" id="sexPreferenceGenderFemale" name="preference" value="female">&nbsp; <i class="fas fa-female" style="color: rgba(0, 0, 0, 0.7);"></i> Female
               </label>
               <br>
               <label for="infoInput" class="sr-only">Info</label>
