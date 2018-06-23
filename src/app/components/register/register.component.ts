@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
+
 import {Router} from '@angular/router';
 import {s} from '@angular/core/src/render3';
 
@@ -44,7 +45,7 @@ export class RegisterComponent implements OnInit {
 
     // console.log(this.userSex);
     // console.log(this.userSexPreference);
-    // console.log(this.description );
+    // console.log(this.description );  dodanie endpointu
     this.router.navigate(['/login']);
   }
 

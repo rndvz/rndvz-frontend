@@ -17,6 +17,8 @@ import { LoginComponent } from './components/login/login.component';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './guards/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
+import { HttpClientModule} from '@angular/common/http';
+import {RestFullService} from './services/rest-full.service';
 
 const appRoutes = [
   { path: '', component: MainComponent, canActivate: [AuthGuard], children: [
@@ -49,10 +51,12 @@ const appRoutes = [
     RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),
     BrowserModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [
-    UserService
+    UserService,
+    RestFullService
   ],
   bootstrap: [
     AppComponent
