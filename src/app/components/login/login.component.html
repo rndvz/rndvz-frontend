@@ -18,8 +18,10 @@
 
           <div class="card-footer">
             <div class="shadow-sm btn-group btn-group-lg" role="group">
-              <button class="btn btn-outline-primary" type="button">Register</button>
+              <button [routerLink]="['/register']"  class="btn btn-outline-primary" type="button">Register</button>
               <button class="btn btn-primary" type="submit">Sign in</button>
+              <!--TODO przekierowanie na strone bez zalogowania | czy wgl chcemy taka strone???-->
+              <a [routerLink]="['/(TODO strona bez logowania)']" class="btn btn-link">Cancel</a>
             </div>
           </div>
         </form>
