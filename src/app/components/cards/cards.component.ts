@@ -29,8 +29,8 @@ export class CardsComponent implements OnInit {
     const photo1 = 'https://thumb9.shutterstock.com/display_pic_with_logo/111616/111616,1312478131,2/stock-photo-beauty-woman' +
       '-portrait-of-teen-girl-beautiful-cheerful-enjoying-with-long-brown-hair-and-clean-skin-82225732.jpg';
     const photo2 = 'https://thumb9.shutterstock.com/display_pic_with_logo/399136/646898302/stock-photo-beautiful-woman-646898302.jpg';
-    const card1 = new Person('Amelia', 'hehe ;)', Gender.FEMALE, [photo1, photo2]);
-    const card2 = new Person('Jessica', '(:', Gender.FEMALE, [photo2]);
+    const card1 = new Person('Amelia', 'hehe ;)', Gender.female, [photo1, photo2]);
+    const card2 = new Person('Jessica', '(:', Gender.female, [photo2]);
     this.cards = [card1, card2, card1];
   }
 

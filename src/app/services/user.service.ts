@@ -6,8 +6,7 @@ import { Injectable } from '@angular/core';
 export class UserService {
   get username(): string {
     return this._username;
-  }// localhost/users/id_users
-  //
+  }
 
   set username(value: string) {
     this._username = value;
@@ -16,14 +15,15 @@ export class UserService {
   private _username: string;
   private isLogged: boolean;
 
-  constructor() {this.isLogged = false; }
+  constructor() {}
 
   public isLoggedIn(): boolean {
     return this.isLogged;
   }
 
-  public LogIn(): void {
+  public LogIn(s: string): void {
     this.isLogged = true;
+    this._username = s;
   }
 
   public LogOut(): void {

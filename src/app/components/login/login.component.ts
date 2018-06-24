@@ -3,11 +3,8 @@ import { library } from '@fortawesome/fontawesome';
 import { faUserLock, faUserShield } from '@fortawesome/fontawesome-free-solid';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import set = Reflect.set;
 import {RestFullService} from '../../services/rest-full.service';
 import {Liczba, User} from '../../util/user';
-import {Gender} from '../../util/gender.enum';
-import {passBoolean} from 'protractor/built/util';
 
 library.add(faUserLock, faUserShield);
 
@@ -23,6 +20,7 @@ export class LoginComponent implements OnInit {
   existsUserB: boolean;
 
   constructor(private router: Router, private userService: UserService, private testService: RestFullService) { }
+
   private async delay(ms: number) {
      await new Promise(resolve => setTimeout(() => resolve(), 1000)).then(() => console.log('fired'));
   }
@@ -58,8 +56,8 @@ export class LoginComponent implements OnInit {
               this.delay(100).then(any2 => {                                         //  DELAY 100 START
                 if (this.username.toString() === this.user.login.toString() &&
                   this.password.toString() === this.user.password.toString() ) {
-                  console.log('User login and password is correct: ' + this.username + ' | ' + this.password);
-                  this.userService.LogIn();
+                  console.log('<' + this.username + '> LOGGED IN ');
+                  this.userService.LogIn(this.username.toString());
                   this.router.navigate(['/refresh']);
                 } else {
                   console.log('ERROR: User login and password is incorrect: ' + this.username + ' | ' + this.password);
@@ -72,21 +70,15 @@ export class LoginComponent implements OnInit {
         }
       });                                                                //  DELAY 50 END
 
-
-
-
-      // this.delay(100).then(any => {
-      //   console.log(this.user);
-      // });
-
-      // mock_start for admin
+      // backdoor for admin
       if (this.username === 'admin' && this.password === 'admin') {
         this.userService.username = this.username;
-        this.userService.LogIn();
+        this.userService.LogIn('admin');
+        console.log('<' + this.username + '> LOGGED IN ');
         // console.log(this.username, this.password);
         this.router.navigate(['/refresh']);
 
-      }// mock_end
+      }// backdor_end
 
     } else {
       console.log('ERROR: Login is not specified');
