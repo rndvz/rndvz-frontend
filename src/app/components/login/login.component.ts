@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.LogIn('admin');
-    this.router.navigate(['/chat/2']);
+    // this.userService.LogIn('admin');
+    // this.router.navigate(['/chat/2']);
   }
 
   loginUser(e) {

@@ -71,16 +71,9 @@ export class ChatComponent implements OnInit, AfterViewInit {
 
   private async reciveMsg() {
     while (true) {
-      await delay(6000);  // Would be good to change something diffrent
-      this.restService.getExistsUserWithName('a')
-        .forEach(x => {
-          if (x.value) {
-            console.log(this);
-            console.log(this.messages.push(new Message('xxx', Author.OTHER)));
-          } else {
-            this.inputText = 'nie ma';
-          }
-        });
+      await delay(6000); { // Would be good to change something diffrent
+        console.log(this.messages.push(new Message('😂😂😂😂😂😂😂😂', Author.OTHER)));
+      }
     }
   }     // messages / search / last | JSON {from:1, to:3} -> 10
 
