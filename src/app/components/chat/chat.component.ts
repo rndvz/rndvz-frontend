@@ -61,13 +61,13 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.chatElement.nativeElement.scrollTop = this.chatElement.nativeElement.scrollHeight;
   }
 
-  private sendMsgFromView(event: any): void {
+  sendMsgFromView(event: any): void {
     this.mapTextWithEmoji();
     this.messages.push(new Message(this.inputText, Author.SELF));
     // rest-full.send Msg to User
     this.inputText = '';
     this.reciveMsg();
-  }
+  }  // messages| JSON {text:dsads, from:1, to:3}
 
   private async reciveMsg() {
     while (true) {
@@ -82,7 +82,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
           }
         });
     }
-  }
+  }     // messages / search / last | JSON {from:1, to:3} -> 10
 
   private mapTextWithEmoji() {
     for (const prop in this.emotics) {

@@ -65,13 +65,43 @@ export class RestFullService {
       .subscribe(data => console.log(data));
   }
 
-  uploadPhoto(id: number, photo: string[]) {   // registers new User in DB
+  blockUser(from: number, to: number) {   // blocks user
     this.httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post('http://localhost:8080/users' + id + 'upload',  JSON.stringify(photo), this.httpOptions)
+    return this.http.post('http://localhost:8080/block',  JSON.stringify({ from: from, to: to}), this.httpOptions)
+      .subscribe(data => console.log(data));
+  }
+
+  accepptUser(from: number, to: number) {   // acceppt user
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post('http://localhost:8080/acceppt',  JSON.stringify({ from: from, to: to}), this.httpOptions)
+      .subscribe(data => console.log(data));
+  }
+
+  sendMessage(text: string, from: number, to: number) {   // CROS  AGAIN
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post('http://localhost:8080/messages',  JSON.stringify({ text: text, from: from, to: to}), this.httpOptions)
+      .subscribe(data => console.log(data));
+  }
+
+  uploadPhoto(id: number, photo: string[]) {   // d
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.http.post('http://localhost:8080/users' + id + '/upload',  JSON.stringify({ photo: photo}), this.httpOptions)
       .subscribe(data => console.log(data));
   }
 
