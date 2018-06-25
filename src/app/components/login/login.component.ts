@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.userService.LogIn();
-    // this.router.navigate(['/settings']);
+    this.userService.LogIn('admin');
+    this.router.navigate(['/chat/2']);
   }
 
   loginUser(e) {
@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit {
                   this.user = new User(x.id, x.login, x.password, x.birthDate, x.description, x.sex, x.sexPreference, x.avgRate,
                     x.acceptedRateDifference, x.acceptedYearDifference, x.acceptedDistance, x.latitude, x.longitude, x.photos);
                     console.log('User downloaded: ' + this.user);
-                    console.log(this.user);
                 });
 
               this.delay(100).then(any2 => {                                         //  DELAY 100 START
