@@ -1,0 +1,59 @@
+<div class="container-fluid h-100">
+  <div class="row h-100">
+    <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4 h-100 w-100 d-flex align-items-center mx-auto justify-content-center">
+      <div class="card shadow-lg">
+        <form class="text-center" (ngSubmit)="submit($event)">
+          <div class="card-header">
+            <h1 class="h3 mb-4 font-weight-light">Create your account</h1>
+            <i class="fas fa-user-alt fa-10x mt-1 mb-4" style="color: rgba(0, 0, 0, 0.7);"></i>
+
+
+            <div class="shadow-sm p-0" >
+              <label for="loginNameInput" class="sr-only">loginName</label>
+              <input type="text" id="loginNameInput" class="form-control rounded-0" placeholder="Login" required autofocus minLength="3" maxLength="20">
+              <label for="loginNameInput" class="sr-only">loginName</label>
+              <input type="password" id="passwordInput" class="form-control rounded-0" placeholder="Password" required autofocus minLength="4">
+              <label for="loginNameInput" class="sr-only">loginName</label>
+              <input type="password" id="passsword2Input" class="form-control rounded-0" placeholder="Confirm password" required autofocus minLength="4">
+              <br>
+              Date of birth: &nbsp;&nbsp;<label for="birthdateInput"></label><input type="date" id="birthdateInput" name="birthdate" value="1990-01-01" min="1900-01-01" max="2000-12-31" />
+              <br><br>
+              <label>
+              Your Sex:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </label>
+              <label>
+                <input type="radio" id="sexGenderMale" name="gender" value="male" >&nbsp; <i class="fas fa-male" style="color: rgba(0, 0, 0, 0.7);"></i> Male
+              </label>
+              &nbsp;&nbsp;
+              <label>
+                <input type="radio" id="sexGenderFemale" name="gender" value="female">&nbsp; <i class="fas fa-female" style="color: rgba(0, 0, 0, 0.7);"></i> Female
+              </label>
+              <br>
+              <label>
+                Preference:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </label>
+              <label>
+                <input type="radio" id="sexPreferenceGenderMale" name="preference" value="male">&nbsp; <i class="fas fa-male" style="color: rgba(0, 0, 0, 0.7);"></i> Male
+              </label>
+              &nbsp;&nbsp;
+              <label>
+                <input type="radio" id="sexPreferenceGenderFemale" name="preference" value="female">&nbsp; <i class="fas fa-female" style="color: rgba(0, 0, 0, 0.7);"></i> Female
+              </label>
+              <br>
+              <label for="infoInput" class="sr-only">Info</label>
+              <textarea id="infoInput" class="form-control rounded-0" placeholder="Little bit about you" required size="300"></textarea>
+
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <div class="shadow-sm btn-group btn-group-lg" role="group">
+              <button class="btn btn-primary" type="submit">Register</button>
+              <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

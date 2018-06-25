@@ -1,8 +1,8 @@
 <div class="h-100 w-100 d-flex flex-column-reverse shadow bg-dark" style="border: 1px solid rgba(0, 0, 0, 0.125);">
   <div class="w-100 shadow-lg input-group" style="height: 5rem;">
-    <input type="text" class="form-control p-4 rounded-0 h-100 bg-dark text-white" placeholder="Type your message!" aria-label="Message input">
+    <input type="text" class="form-control p-4 rounded-0 h-100 bg-dark text-white" placeholder="Type your message!" aria-label="Message input" [(ngModel)]="inputText">
     <div class="input-group-append bg-dark h-100" style="min-width: 20%;">
-      <button class="btn btn-outline-light rounded-0 h-100 w-100 font-weight-bold" type="button">SEND</button>
+      <button class="btn btn-outline-light rounded-0 h-100 w-100 font-weight-bold" type="button" (click)="sendMsgFromView($event)">SEND</button>
     </div>
   </div>
 

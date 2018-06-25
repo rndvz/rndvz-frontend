@@ -16,6 +16,9 @@ import { RefreshComponent } from './components/refresh/refresh.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserService } from './services/user.service';
 import { AuthGuard } from './guards/auth.guard';
+import { RegisterComponent } from './components/register/register.component';
+import { HttpClientModule} from '@angular/common/http';
+import {RestFullService} from './services/rest-full.service';
 
 const appRoutes = [
   { path: '', component: MainComponent, canActivate: [AuthGuard], children: [
@@ -24,6 +27,7 @@ const appRoutes = [
       { path: 'settings', component: SettingsComponent },
       { path: 'refresh', component: RefreshComponent }
   ]},
+  { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
@@ -40,16 +44,19 @@ const appRoutes = [
     SettingsComponent,
     LoginComponent,
     RefreshComponent,
-    ChatComponent
+    ChatComponent,
+    RegisterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'}),
     BrowserModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [
-    UserService
+    UserService,
+    RestFullService
   ],
   bootstrap: [
     AppComponent

@@ -4,6 +4,7 @@ import { AnimationBuilder, AnimationPlayer, style, animate } from '@angular/anim
 import { Person } from '../../util/person';
 import { Gender } from '../../util/gender.enum';
 import { PanHammerInput } from '../../util/pan-hammer-input';
+import {RestFullService} from '../../services/rest-full.service';
 
 @Component({
   selector: 'app-cards',
@@ -23,14 +24,15 @@ export class CardsComponent implements OnInit {
   public currentYPosition = this.startYPosition;
   public currentTransform = this.noRotateTransform;
 
-  constructor(private domSanitizer: DomSanitizer, private animationBuilder: AnimationBuilder) { }
+  constructor(private domSanitizer: DomSanitizer, private animationBuilder: AnimationBuilder, private restService: RestFullService) { }
 
   ngOnInit() {
     const photo1 = 'https://thumb9.shutterstock.com/display_pic_with_logo/111616/111616,1312478131,2/stock-photo-beauty-woman' +
       '-portrait-of-teen-girl-beautiful-cheerful-enjoying-with-long-brown-hair-and-clean-skin-82225732.jpg';
     const photo2 = 'https://thumb9.shutterstock.com/display_pic_with_logo/399136/646898302/stock-photo-beautiful-woman-646898302.jpg';
-    const card1 = new Person('Amelia', 'hehe ;)', Gender.FEMALE, [photo1, photo2]);
-    const card2 = new Person('Jessica', '(:', Gender.FEMALE, [photo2]);
+    const photo3 = 'http://4.bp.blogspot.com/-i9qj20Om4Zs/UYshvXTJcoI/AAAAAAAAHkA/k3YQEoa0ZPg/s400/603760_454781201278701_1591909635_n.jpg';
+    const card1 = new Person('Amelia', 'hehe ;)', Gender.female, [photo1, photo2, photo3]);
+    const card2 = new Person('Jessica', '(:', Gender.female, [photo2]);
     this.cards = [card1, card2, card1];
   }
 
@@ -45,8 +47,10 @@ export class CardsComponent implements OnInit {
 
   public onPanEnd(event: PanHammerInput): void {
     if (this.isSwipeRight(event)) {
+      this.restService.accepptUser(22, 14); // my_id, another_user_id
       this.currentPlayer = this.createSwipeRightAnimation();
     } else if (this.isSwipeLeft(event)) {
+      this.restService.blockUser(22, 14);
       this.currentPlayer = this.createSwipeLeftAnimation();
     } else {
       this.currentPlayer = this.createReturnAnimation();
